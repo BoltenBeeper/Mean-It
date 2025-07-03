@@ -1,3 +1,14 @@
+[ MAKE SURE TO COMPLETE THE FOLLOWING STEPS TO RUN: ]
+
+- Download the project's dependencies with the following command: "npm i axios body-parser dotenv express yup".
+- If you have not already, create a ChatGPT account and generate an API key, then copy it.
+- Add a .env file with "CHATGPT_API_KEY=paste-your-ChatGPT-api-key-here" written in it.
+- In two separate terminal instances in the project folder run the following commands in this order:
+    1. "node ChatGPTAPI.js" to start the server to send and recieve messages from ChatGPT.
+    2. "npm start" to render the app in a browswer as a developer server.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

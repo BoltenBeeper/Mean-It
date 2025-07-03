@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Poppins', sans-serif;
+  background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Red borders for all text input boxes */
+input[type="text"] {
+  border: 2px solid red;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* White text for labels */
+label {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Allow resizing for input containers */
+.input-container input[type="text"],
+.output-container input[type="text"] {
+  resize: both;
+  overflow: auto; /* Optional: to handle content overflow */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.output-box, .input-box {
+  border: 2px solid red;
 }
+
+/* ------------------------------------------ */
+
+.translate-button {
+  padding: 10px 20px;
+  width:135px;
+  height:40px;
+  border: 2px solid #c40000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bruno Ace SC', cursive;
+}
+
+.translate-button:hover {
+  transform: scale(0.98); /* makes button change size when hovered over */
+}
+
+.translate-button::before {
+  content:'';
+  position:absolute;
+  width:135px;
+  height:40px;
+ 
+  top:0;
+  left:0;
+  
+  transition: .2s linear; /* Defines how long the button effect will take place for. */
+  
+  z-index: -2;
+}
+
+.translate-button::after {
+  content:'';
+  position:absolute;
+  
+  /* width:135px;
+  height:40px; */
+
+  /* top:-2px;
+  left:-2px; */
+  z-index: -1;
+}
+
+/* hover effect */
+
+.translate-button:hover::before
+{
+filter:blur(5px);
+background:linear-gradient(45deg, #ff0707, #ff920c,#ffee00);
+/* transform: rotate(-5deg); */
+}
+/* END of button highlight code */
+
+/* ------------------------------------------ */
