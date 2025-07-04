@@ -53,7 +53,7 @@ const postChatGPTMessage = async (translationInformation) => {
   // Destructure textToTranslate (previously formData) to extract the context and message
   const { context, message } = translationInformation;
   emotionChoice = message.additionalInfo || "close to original text"; // Default to sound the same if not provided
-  languageChoice = message.message.languageText || "the same language as it is written"; // Default to sound the same if not provided
+  languageChoice = message.languageText || "the same language as it is written"; // Default to sound the same if not provided
 
   // Validate the message structure
   // if (!message || !message.inputText || !message.languageText) {
