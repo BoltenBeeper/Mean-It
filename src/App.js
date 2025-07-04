@@ -65,10 +65,10 @@ function App() {
   const handleMouseLeave = () => {
     setCurrentWord("Translate");
   };
-    
+
   // ====== Function to handle form submission: ======
 
-  async function handleSubmit(event)  {
+  async function handleSubmit(event) {
     console.log(translationInformation.inputText)
     // For now, just echo the input text and additional info
     console.log("Input Text:", inputText);
@@ -77,17 +77,17 @@ function App() {
 
     event.preventDefault();
     const payload = {
-      context: "You are a helpful assistent who is fluent in all lenguages. A particular specialty you have is translating messages to come across a certain way such as sounding polite or rude in a message or any other connotation to one's speaach.", // Adjust as needed
+      context: "You are a translation app, fluent in all languages. Your particular specialty is translating messages to come across a certain way such as sounding polite or rude in a message or any other connotation to one's speech.",
       message: translationInformation, // Ensure textToTranslate is structured as expected by the backend
       conversation: [], // If you're using this field
     };
 
     try {
       const response = await fetch('http://localhost:3000/chatGPT', {
-        method: 'POST', 
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json', 
-        }, 
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(payload),
       });
       const chatGPTResponseData = await response.json();
@@ -147,13 +147,16 @@ function App() {
         </div>
         {/* Button to trigger translation */}
         <button
-      className="translate-button"
-      onMouseEnter={handleHover}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleSubmit} // Added onClick event handler
-    >
-      {currentWord}
-    </button>
+          className="translate-button"
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleSubmit} // Added onClick event handler
+        >
+          {currentWord}
+        </button>
+        <div className="face-container">
+          <img src="/faces/Resting.png" alt="Face" />
+        </div>
       </header>
     </div>
   );
