@@ -5,6 +5,7 @@ const Yup = require("yup");
 // API Configuration
 const CHATGPT_END_POINT = "https://api.openai.com/v1/chat/completions";
 const CHATGPT_MODEL = "gpt-4.1-mini";
+// gpt-4.1-mini is the best one to use for this project as it is the cheapest and most effective model for this use case.
 // gpt-3.5-turbo is another good one but it's more expensive to use.
 
 const config = {
@@ -71,10 +72,32 @@ const postChatGPTMessage = async (translationInformation) => {
   Please do not include the original message in your response. 
   Please do not censor any words. For example don't censor the word "bitch" as "b****", "b*tch", "b!&@h", "b@$ch" or any other censoring of the word. 
   In your response, please include only the translated text and no extra words, information, or punctuation such as quotation marks, parenthesis, dashes, arrows, colons, semicolons, or any extra unnecesary indicators or symbols (besides normal, proper punctuation) around or included in the text response. 
-  Please add no extra sentences except for exactly what is needed to properly translate the exact message. For example, if I asked you to translate the sentence "hello can you help me" and ask you to sound grateful and excited" A GOOD response would be: "Hello! I would be delighted if you would help me!" and a BAD response would be: "Hello, can you please help me? I would be so incredibly grateful!" because there is no need to add extra sentences or words to the response that are not needed to properly translate the message.`;
-  
-  // Please give your message in the exact same format as the following example: [happy] [translated message here] (not including the brackets) where [happy] is the emotion I requested you to sound like in the new translated message (written in english) and [translated message here] is the actual translated message. 
-  // Based on whichever word in the list is the closest synonym to how I asked for the translated message to sound, ONLY Replace happy with one single word from the following list (written in english): Considerate, Disgusted, Embarassed, Energetic, Fearful, Gloomy, Happy, Loving, Mad, Mischievous, Neutral, Sad, Surprised.
+  Please add no extra sentences except for exactly what is needed to properly translate the exact message. For example, if I asked you to translate the sentence "hello can you help me" and ask you to sound grateful and excited" A GOOD response would be: "Hello! I would be delighted if you would help me!" and a BAD response would be: "Hello, can you please help me? I would be so incredibly grateful!" because there is no need to add extra sentences or words to the response that are not needed to properly translate the message. 
+  Please format your message with the chosen emotion first, then a space, then the translated text. Example: "happy translated message here" where 'happy' is the emotion I requested you to sound like in the new translated message (no matter what language this is translated to please write it in english) and 'translated message here' is the actual translated message. (this message SHOULD be written in the requested language to translate to) 
+  Please pick a word from this list (
+    bored,
+    confused,
+    disgusted,
+    embarassed,
+    energetic,
+    existential,
+    generous,
+    happy,
+    jealous,
+    loving,
+    mad,
+    mischievous,
+    nervous,
+    neutral,
+    relaxed,
+    sad,
+    scared,
+    shocked,
+    silly,
+    sympathetic,
+    tired.
+  ) based on whichever word in the list is the closest synonym to how I asked for the translated message to sound. The word you pick from the list should be the first word in the response, followed by a space, and then the translated message as I described.`; 
+
   // Please do not include any arrows of any kind such as "->", "-->", "=>" or "==>".
 
   // Construct the messages array for the API request

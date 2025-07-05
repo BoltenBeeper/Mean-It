@@ -99,19 +99,30 @@ function App() {
       // Update translated text
       setTranslatedText(chatGPTResponseData.message.content);
 
-      // --- Use user's emotion input for face image ---
-      // Set the face image based on the user's emotion input
-      const emotionInput = translationInformation.additionalInfo.trim().toLowerCase();
-      const emotionMap = [
-        "considerate", "disgusted", "embarassed", "energetic", "fearful", "gloomy", "happy", "loving", "mad", "mischievous", "neutral", "sad", "surprised"
-      ];
-      // Find closest match (case-insensitive)
-      const matchedEmotion = emotionMap.find(e => e === emotionInput);
-      if (matchedEmotion) {
-        setFaceImage(`/faces/${matchedEmotion.charAt(0).toUpperCase() + matchedEmotion.slice(1)}.png`);
-      } else {
-        setFaceImage("/faces/Resting.png");
+      // --- NEW LOGIC: Update face image based on emotion in response ---
+      // Expecting format: "Happy translated text here"
+      if (chatGPTResponseData.message && chatGPTResponseData.message.content) {
+        // Extract the first word (emotion) from the response
+        const match = chatGPTResponseData.message.content.match(/^(\w+)/);
+        if (match) {
+          const emotion = match[1].toLowerCase();
+          // Map emotion to image filename (capitalize first letter)
+          const emotionMap = [
+            "generous", "disgusted", "embarassed", "energetic", "scared", "existential", "happy", "loving", "mad", "mischievous", "neutral", "sad", "tired", "bored", "confused", "jealous", "nervous", "relaxed", "shocked", "silly", "sympathetic"
+          ];
+          if (emotionMap.includes(emotion)) {
+            setFaceImage(`/faces/${emotion.charAt(0).toUpperCase() + emotion.slice(1)}.png`);
+            // console.log(`ALL DATA: ${JSON.stringify(chatGPTResponseData)}`);
+          } else {
+            console.log("Unknown emotion:", emotion);
+            setFaceImage("/faces/Resting.png");
+          }
+        } else {
+          console.log("No emotion found in response, setting to resting face.");
+          setFaceImage("/faces/Resting.png");
+        }
       }
+      // --- END NEW LOGIC ---
 
     } catch (error) {
       console.error('Error:', error);
