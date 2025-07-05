@@ -21,6 +21,9 @@ function App() {
     additionalInfo: "",
   });
 
+  // State for managing which face image to show
+  const [faceImage, setFaceImage] = useState("/faces/Resting.png");
+
   // Function to handle input text change
   const handleInputChange = (event) => {
     const fieldName = event.target.name;
@@ -95,6 +98,21 @@ function App() {
       console.log('TRANSLATION REQUEST SENT')
       // Update translated text
       setTranslatedText(chatGPTResponseData.message.content);
+
+      // --- Use user's emotion input for face image ---
+      // Set the face image based on the user's emotion input
+      const emotionInput = translationInformation.additionalInfo.trim().toLowerCase();
+      const emotionMap = [
+        "considerate", "disgusted", "embarassed", "energetic", "fearful", "gloomy", "happy", "loving", "mad", "mischievous", "neutral", "sad", "surprised"
+      ];
+      // Find closest match (case-insensitive)
+      const matchedEmotion = emotionMap.find(e => e === emotionInput);
+      if (matchedEmotion) {
+        setFaceImage(`/faces/${matchedEmotion.charAt(0).toUpperCase() + matchedEmotion.slice(1)}.png`);
+      } else {
+        setFaceImage("/faces/Resting.png");
+      }
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -155,7 +173,7 @@ function App() {
           {currentWord}
         </button>
         <div className="face-container">
-          <img src="/faces/Resting.png" alt="Face" />
+          <img className="face-image" src={faceImage} alt="Face" />
         </div>
       </header>
     </div>
