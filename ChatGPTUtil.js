@@ -83,6 +83,7 @@ const postChatGPTMessage = async (translationInformation) => {
     existential,
     generous,
     happy,
+    hopeful,
     jealous,
     loving,
     mad,
@@ -98,6 +99,7 @@ const postChatGPTMessage = async (translationInformation) => {
     tired.
   ) based on whichever word in the list is the closest synonym to how I asked for the translated message to sound. The word you pick from the list should be the first word in the response, followed by a space, and then the translated message as I described.`; 
 
+  // The first word in the response should ONLY and ALWAYS come from the list I gave you.
   // Please do not include any arrows of any kind such as "->", "-->", "=>" or "==>".
 
   // Construct the messages array for the API request

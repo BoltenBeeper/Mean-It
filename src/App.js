@@ -108,7 +108,7 @@ function App() {
           const emotion = match[1].toLowerCase();
           // Map emotion to image filename (capitalize first letter)
           const emotionMap = [
-            "generous", "disgusted", "embarassed", "energetic", "scared", "existential", "happy", "loving", "mad", "mischievous", "neutral", "sad", "tired", "bored", "confused", "jealous", "nervous", "relaxed", "shocked", "silly", "sympathetic"
+            "generous", "disgusted", "embarassed", "energetic", "scared", "existential", "happy", "hopeful", "loving", "mad", "mischievous", "neutral", "sad", "tired", "bored", "confused", "jealous", "nervous", "relaxed", "shocked", "silly", "sympathetic"
           ];
           if (emotionMap.includes(emotion)) {
             setFaceImage(`/faces/${emotion.charAt(0).toUpperCase() + emotion.slice(1)}.png`);
