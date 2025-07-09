@@ -2,80 +2,186 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-color: #ff1f8b #3d001e;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background:
-    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-    background-color: #131313;
-    background-size: 20px 20px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: #0E0007;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-/* Red borders for all text input boxes */
 input[type="text"] {
-  border: 2px solid red;
+  place-self: center;
+  color: #ff1f8b;
+  font-size: inherit;
+  border: none;
+  border-radius: .2em;
+  background-color: #3d001e;
 }
 
-/* White text for labels */
-label {
-  color: white;
+::placeholder { /* Firefox */
+  color: #ff1f8b;
+  font-size: inherit;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  opacity: .5; 
 }
 
-/* Allow resizing for input containers */
+::-ms-input-placeholder { /* Edge 12-18 */
+  color: #ff1f8b;
+  font-size: inherit;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  opacity: .5;
+}
+
+/* ============================================== */
+
+.app-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #ff1f8b;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #0E0007;
+}
+
+/* ============================================== */
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  place-self: center;
+  place-items: center;
+  width: 90%;
+  max-width: 1000px;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  font-size: 1.5rem;
+  gap: .4em;
+}
+
+.detail-containers {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  width: 100%;
+  justify-content: space-between;
+  gap: .4em;
+}
+
+.input-container {
+  flex: 1 1 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box {
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  padding: .2em;
+  margin: auto 0;
+}
+
+.input-box:focus, .output-box:focus {
+  flex: 1 0 auto;
+  outline: 2px solid #ff1f8b;
+}
+
+.original-text {
+  width: 100%;
+  min-height: 3em;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
 .input-container input[type="text"],
 .output-container input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
   resize: both;
-  overflow: auto; /* Optional: to handle content overflow */
+  overflow: auto;
+}
+
+.output-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto .4em;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  font-size: 1.5rem;
 }
 
 .output-box, .input-box {
-  border: 2px solid red;
+  color: #ff1f8b;
+  font-size: inherit;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
+  border: none;
+  border-radius: .2em;
+  background-color: #3d001e;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* ------------------------------------------ */
+.output-box {
+  min-height: 3em;
+  resize: vertical;
+}
+
+/* ============================================== */
 
 .translate-button {
-  padding: 10px 20px;
-  width:135px;
-  height:40px;
-  border: 2px solid #c40000;
-  border-radius: 5px;
-  background: #000;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  padding: .2em;
+  margin: auto 0;
+  border: 2px solid #52002c;
+  border-radius: .2em;
+  background: rgba(0, 0, 0, 0);
   color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 800;
   cursor: pointer;
   text-align: center;
   appearance: button;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bruno Ace SC', cursive;
 }
 
 .translate-button:hover {
-  transform: scale(0.98); /* makes button change size when hovered over */
+  transform: scale(1); /* makes button change size when hovered over */
 }
 
 .translate-button::before {
   content:'';
   position:absolute;
-  width:135px;
-  height:40px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  opacity: .5;
  
   top:0;
   left:0;
   
-  transition: .2s linear; /* Defines how long the button effect will take place for. */
+  transition: .5s ease-in-out; /* Defines how long the button effect will take place for. */
   
   z-index: -2;
 }
@@ -83,12 +189,7 @@ label {
 .translate-button::after {
   content:'';
   position:absolute;
-  
-  /* width:135px;
-  height:40px; */
-
-  /* top:-2px;
-  left:-2px; */
+  transition: .5s ease-in-out;
   z-index: -1;
 }
 
@@ -96,10 +197,41 @@ label {
 
 .translate-button:hover::before
 {
-filter:blur(5px);
-background:linear-gradient(45deg, #ff0707, #ff920c,#ffee00);
-/* transform: rotate(-5deg); */
+  filter:blur(.2em);
+  background:linear-gradient(45deg, #ff0707, #ff920c,#ffee00);
+  opacity: .5;
 }
-/* END of button highlight code */
 
-/* ------------------------------------------ */
+/* ============================================== */
+
+.face-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.face-image {
+  place-self: center;
+  width: 80%;
+  max-width: 450px;
+  height: auto;
+  margin: 2em;
+  border-radius: 50%;
+  box-shadow: 0 0 3.5em rgba(255, 255, 255, 0.5);
+  z-index: -1;
+}
+
+@media (max-width: 600px) {
+  .translate-button {
+    font-size: 1rem;
+  }
+
+  .input-form, .output-box {
+    font-size: 1rem;
+  }
+}

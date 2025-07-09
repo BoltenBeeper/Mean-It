@@ -131,62 +131,78 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="input-container" component="form" onSubmit={handleSubmit}>
-          <label htmlFor="inputBox">What would you like to translate?</label>
-          <textarea className="input-box"
-            name="inputText"
-            id="inputBox"
-            type="text"
-            value={inputText}
-            required
-            onChange={handleInputChange}
-          />
+      <header className="app-header-container">
+        <h1 className="app-header">Mean.It</h1>
+      </header>
+
+      <main>
+        <div className="input-form">
+          <div className="input-container" component="form" onSubmit={handleSubmit}>
+            <textarea className="input-box original-text"
+              name="inputText"
+              id="inputBox"
+              type="text"
+              placeholder="What would you like to translate?"
+              value={inputText}
+              required
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="detail-containers">
+            <div className="input-container" component="form">
+              <input className='input-box language'
+                name="languageText"
+                id="languageBox"
+                type="text"
+                placeholder="Language"
+                value={languageText}
+                required
+                onChange={handleLanguageChange}
+              />
+            </div>
+
+            <div className="input-container" component="form">
+              <input className='input-box additional-info'
+                name="additionalInfo"
+                id="additionalInfoBox"
+                type="text"
+                placeholder="How would you like to come across?"
+                value={additionalInfo}
+                required
+                onChange={handleAdditionalInfoChange}
+              />
+            </div>
+          </div>
+
+          {/* Button to trigger translation */}
+          <button
+            className="translate-button"
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleSubmit} // Added onClick event handler
+          >
+            {currentWord}
+          </button>
         </div>
-        <div className="language-container">
-          <label htmlFor="languageBox">What lagnuage would you like to translate to?</label>
-          <input
-            name="languageText"
-            id="languageBox"
-            type="text"
-            value={languageText}
-            required
-            onChange={handleLanguageChange}
-          />
-        </div>
-        <div className="additional-info-container">
-          <label htmlFor="additionalInfoBox">How would you like to come across?</label>
-          <input
-            name="additionalInfo"
-            id="additionalInfoBox"
-            type="text"
-            value={additionalInfo}
-            required
-            onChange={handleAdditionalInfoChange}
-          />
-        </div>
-        <div className="output-container">
-          <label>Your translated message:</label>
-          <textarea className="output-box"
-            id="outputBox"
-            type="text"
-            value={translatedText} // Display translated text
-            readOnly // Make it read-only
-          />
-        </div>
-        {/* Button to trigger translation */}
-        <button
-          className="translate-button"
-          onMouseEnter={handleHover}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleSubmit} // Added onClick event handler
-        >
-          {currentWord}
-        </button>
+
         <div className="face-container">
           <img className="face-image" src={faceImage} alt="Face" />
         </div>
-      </header>
+
+        <div className="output">
+          <div className="output-container">
+            {/* <label>Your translated message:</label> */}
+            <textarea className="output-box"
+              id="outputBox"
+              type="text"
+              value={translatedText} // Display translated text
+              readOnly // Make it read-only
+            />
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 }
